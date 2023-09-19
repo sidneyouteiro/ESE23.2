@@ -22,7 +22,7 @@ def plot_boxplot(data,colunas_de_interesse):
         sns.boxplot(data=data,x='Porte',y=i,ax=j,hue='SUCESSO')
 
     Line, Label = flat_axs[0].get_legend_handles_labels()
-    fig.legend(Line,Label, loc='lower left',title='O projeto foi um sucesso?')
+    fig.legend(Line,Label, loc='lower left',title='O projeto foi um sucesso?',title_fontproperties={'weight':'bold'})
     lines, labels = [], []
     for ax in flat_axs[:-1]:
         ax.get_legend().remove()

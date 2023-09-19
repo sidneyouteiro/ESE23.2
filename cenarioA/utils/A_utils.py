@@ -28,7 +28,8 @@ def plot_boxplot(data,colunas_de_interesse):
     fig.set_figheight(5)
     fig.set_figwidth(15)
     for i,j in zip(colunas_de_interesse,axs.flat):
-        sns.boxplot(data=data,x='Porte',y=i,ax=j,hue='Técnica')
+        sns.boxplot(data=data,x='Porte',y=i,ax=j,hue='Técnica',order=['Pequeno','Médio','Grande'])
+        j.legend(title='Técnica',title_fontproperties={'weight':'bold'})
     plt.show()
 
 def teste_shapiro(groups,colunas_de_interesse):
@@ -45,7 +46,7 @@ def avaliacao_teste_shapiro(idx_list,dict_tests,alfa=0.05):
     indexs = pd.MultiIndex.from_tuples(idx_list)
     df_result = pd.DataFrame(dict_tests, index=indexs)
     for i in dict_tests.keys():
-        df_result[i+'Resultado'] = df_result[i].map(lambda x: 'Normal' if x[1] < alfa else 'Sem evidência para rejeitar H0')
+        df_result[i+'Resultado'] = df_result[i].map(lambda x: 'H0 rejeitada' if x[1] < alfa else 'H0 não pode ser rejeitada')
     return df_result
 
 def teste_levene(projetos_utilizaveis,coluna='Tempo Inspeçao (horas)'):
